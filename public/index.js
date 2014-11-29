@@ -1,4 +1,6 @@
-//var $ = require('jquery');
+'use strict';
+
+var $ = require('jquery');
 
 $(document).on('ready', function(){
   $.ajax({
