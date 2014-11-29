@@ -23,7 +23,7 @@ module.exports = function(grunt) {
 
     browserify: {
       dev: {
-        src: ['app/js/**/*.js'],
+        src: ['public/**/*.js'],
         dest: 'build/bundle.js',
         options: {
           transform: ['debowerify']
