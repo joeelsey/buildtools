@@ -8,7 +8,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     clean: {
       dev: {
-        src['build/']
+        src: ['build/']
       }
     },
 
@@ -37,7 +37,32 @@ module.exports = function(grunt) {
           transform: ['debowerify']
         }
       }
+    },
+
+    simplemocha: {
+      options: {
+        timeout: 3000,
+        ignoreLeaks: false,
+        reporter: 'tap'
+      },
+
+      all: {src: ['test/**/*.js']}
+    },
+
+    jshint: {
+      all: ['server.js', 'test/**/*.js'],
+      options: {
+        jshintrc: true
+      }
+    },
+
+    jscs: {
+      src: 'server.js',
+      options: {
+        config: '.jsc'
+      }
     }
   });
   grunt.registerTask('build:dev',['clean:dev', 'browserify:dev', 'copy:dev']);
-}
+  grunt.registerTaks('test', ['jshint','jscs','simplemocha']);
+};
