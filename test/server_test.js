@@ -9,14 +9,24 @@ require('../server');
 var expect = chai.expect;
 var localhost = 'http://localhost:3000'
 
-describe('test to show your ip', function(){
-  it('should get your ip', function(done){
-    chai.request(localhost);
+describe('test to show your ip', function() {
+  it('should post ip to html', function(done) {
+    chai.request(localhost)
       .get('/ip')
-      .end(function(err,res){
+      .end(function(err, res) {
         expect(err).to.eql(null);
-        expect(res.body.ip).to.not.equal(undefined);
+        expect(res.body).to.equal.String;
         done();
       });
-    });
+  });
+
+  it('should get your ip', function(done) {
+    chai.request('http://jsonip.com')
+      .get('/')
+      .end(function(err, res) {
+        expect(err).to.eql(null);
+        expect(res.body).to.have.property('ip');
+        done();
+      });
+  });
 })

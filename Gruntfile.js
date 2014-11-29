@@ -3,7 +3,10 @@
 module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-browserfiy');
+  grunt.loadNpmTasks('grunt-browserify');
+  grunt.loadNpmTasks("grunt-jscs");
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-simple-mocha');
 
   grunt.initConfig({
     clean: {
@@ -50,19 +53,19 @@ module.exports = function(grunt) {
     },
 
     jshint: {
-      all: ['server.js', 'test/**/*.js'],
+      all: ['server.js'],
       options: {
         jshintrc: true
       }
     },
 
     jscs: {
-      src: 'server.js',
+      src: ['server.js', 'test/**/*.js'],
       options: {
-        config: '.jsc'
+        config: '.jscsrc'
       }
     }
   });
   grunt.registerTask('build:dev',['clean:dev', 'browserify:dev', 'copy:dev']);
-  grunt.registerTaks('test', ['jshint','jscs','simplemocha']);
+  grunt.registerTask('test', ['jshint','jscs','simplemocha']);
 };
