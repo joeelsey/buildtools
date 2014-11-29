@@ -20,10 +20,7 @@ app.get('/ip', function(req, res) {
     });
 });
 
-app.use(express.static(__dirname + '/public'));
-app.get('/public', function(req, res) {
-  res.redirect('/index.html');
-});
+app.use(express.static(__dirname + '/build'));
 
 app.set('port', process.env.PORT || 3000);
 app.listen(app.get('port'), function() {
