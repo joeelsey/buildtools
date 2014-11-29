@@ -20,6 +20,11 @@ app.get('/ip', function(req,res){
     })
 });
 
+app.use(express.static(__dirname + '/public'));
+app.get('/public', function(req, res) {
+  res.redirect('/index.html');
+});
+
 app.set('port', process.env.PORT || 3000);
 app.listen(app.get('port'), function(){
   console.log('server running on port: ' + app.get('port'));
