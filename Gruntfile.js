@@ -34,7 +34,7 @@ module.exports = function(grunt) {
       },
 
       test: {
-        src: ['test/client/**/*test.js'],
+        src: ['test/client/client_test.js'],
         dest: 'test/test_bundle.js',
         options: {
           transform: ['debowerify']
@@ -49,7 +49,7 @@ module.exports = function(grunt) {
         reporter: 'tap'
       },
 
-      all: {src: ['test/**/*.js']}
+      all: {src: ['test/server_test.js']}
     },
 
     jshint: {
