@@ -1,7 +1,7 @@
 'use strict';
 
 var chai = require('chai');
-var chaihttp = require('chai-http');
+//var chaihttp = require('chai-http');
 chai.use(chaihttp);
 
 require('../../server');
