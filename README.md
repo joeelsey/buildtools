@@ -1,6 +1,6 @@
 buildtools
 ==========
-<img src="https://travis-ci.org/joeelsey/buildtools.svg"/>
+<img src="https://travis-ci.org/joeelsey/buildtools.svg?branch=dev"/>
 Create a project with following:
 
 At least 1 api end point a json action that accesses that endpoint. 
