@@ -4,7 +4,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-browserify');
-  grunt.loadNpmTasks("grunt-jscs");
+  grunt.loadNpmTasks('grunt-jscs');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-simple-mocha');
 
@@ -37,7 +37,7 @@ module.exports = function(grunt) {
         src: ['test/client/client_test.js'],
         dest: 'test/test_bundle.js',
         options: {
-          transform: ['debowerify'],
+          transform: ['debowerify']
         }
       }
     },
@@ -49,24 +49,27 @@ module.exports = function(grunt) {
         reporter: 'tap'
       },
 
-      all: {src: ['test/server_test.js']}
+      all: {
+        src: ['test/server_test.js']
+      }
     },
 
     jshint: {
-      all: ['server.js'],
+      all: ['server.js', 'Gruntfile.js', 'routes/**/*.js', 'test/**/*.js'],
       options: {
-        jshintrc: true
+        jshintrc: true,
+        ignores: ['test/test_bundle.js']
       }
     },
 
     jscs: {
-      src: ['server.js', 'test/server_test.js'],
+      src: ['server.js', 'Gruntfile.js', 'routes/**/*.js', 'test/**/*.js', '!test/test_bundle.js'],
       options: {
         config: '.jscsrc'
       }
     }
   });
-  grunt.registerTask('build:dev',['clean:dev', 'browserify:dev', 'copy:dev']);
-  grunt.registerTask('test', ['jshint','jscs','simplemocha']);
-  grunt.registerTask('default',['test']);
+  grunt.registerTask('build:dev', ['clean:dev', 'browserify:dev', 'copy:dev']);
+  grunt.registerTask('test', ['jshint', 'jscs', 'simplemocha']);
+  grunt.registerTask('default', ['test']);
 };

@@ -7,7 +7,7 @@ chai.use(chaihttp);
 require('../server');
 
 var expect = chai.expect;
-var localhost = 'http://localhost:3000'
+var localhost = 'http://localhost:3000';
 
 describe('test to show your ip', function() {
   it('should post ip to html', function(done) {
@@ -15,7 +15,7 @@ describe('test to show your ip', function() {
       .get('/ip')
       .end(function(err, res) {
         expect(err).to.eql(null);
-        expect(res.body).to.equal.String;
+        expect(typeof (res.body)).to.equal('string');
         done();
       });
   });
@@ -29,4 +29,4 @@ describe('test to show your ip', function() {
         done();
       });
   });
-})
+});
