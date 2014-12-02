@@ -3,7 +3,6 @@
 var express = require('express');
 var app = express();
 var bodyparser = require('body-parser');
-var request = require('superagent');
 
 app.use(bodyparser.json());
 
@@ -13,18 +12,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.get('/ip', function(req, res) {
-  var jsonip = 'http://jsonip.com';
-
-  request
-    .get(jsonip)
-    .end(function(err, jsondata) {
-      if (err) res.status(500).send(err);
-      var parsedData = JSON.parse(jsondata.text);
-      var ip = parsedData.ip;
-      res.json('Your ip address is: ' + ip);
-    });
-});
+require('./routes/ip_user.js')(app);
 
 app.use(express.static(__dirname + '/build'));
 
